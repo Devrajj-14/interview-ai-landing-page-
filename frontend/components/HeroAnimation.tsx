@@ -17,7 +17,7 @@ interface Dot {
 export default function HeroAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const rotationRef = useRef({ x: 0, y: 0 });
   const [scrollProgress, setScrollProgress] = useState(0);
 
