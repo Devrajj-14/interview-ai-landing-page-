@@ -41,7 +41,7 @@ const RewardsSection = () => {
           <div className="absolute w-[500px] h-[500px] rounded-full bottom-[0%] right-[15%]" style={{ background: 'radial-gradient(circle, rgba(240,230,220,0.4) 0%, transparent 70%)' }}></div>
         </div>
 
-        <div className="py-24 sm:py-32 lg:py-40 relative z-20">
+        <div className="py-16 sm:py-20 lg:py-24 relative z-20">
           <div className="container mx-auto max-w-[1440px] px-10 lg:px-20">
             <div className="relative z-30 flex flex-col items-center text-center">
               <h2 className="text-4xl md:text-[56px] font-bold text-foreground leading-[1.1] md:leading-[1.2] tracking-[-0.02em] max-w-3xl">
@@ -161,21 +161,6 @@ const RewardsSection = () => {
                 height={454}
                 className="relative z-10 object-contain"
               />
-
-              <div className="absolute bottom-[285px] left-1/2 z-30 -translate-x-1/2 text-center md:bottom-[290px]">
-                <div className="relative">
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/68677bf9dc4b788c9ef0fb91_leafs-16.webp"
-                    alt="Decorative leaves"
-                    width={221}
-                    height={79}
-                    className="w-full"
-                  />
-                  <span className="absolute inset-0 top-1 text-3xl font-bold text-foreground">
-                    Achievements
-                  </span>
-                </div>
-              </div>
 
               <div className="absolute bottom-[300px] left-1/2 z-30 w-40 -translate-x-[20%] animate-bob md:bottom-[330px]">
                 <Image
