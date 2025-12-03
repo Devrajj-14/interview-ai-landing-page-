@@ -43,7 +43,7 @@ const RewardsSection = () => {
 
         <div className="py-24 sm:py-32 lg:py-40 relative z-20">
           <div className="container mx-auto max-w-[1440px] px-10 lg:px-20">
-            <div className="relative z-30 flex flex-col items-center text-center bg-background/80 backdrop-blur-sm rounded-3xl py-8 px-4">
+            <div className="relative z-30 flex flex-col items-center text-center">
               <div className="tag-text text-primary font-medium tracking-[0.1em] uppercase text-sm">
                 ACHIEVEMENTS
               </div>
