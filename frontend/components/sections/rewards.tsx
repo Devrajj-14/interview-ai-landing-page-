@@ -44,17 +44,9 @@ const RewardsSection = () => {
         <div className="py-24 sm:py-32 lg:py-40 relative z-20">
           <div className="container mx-auto max-w-[1440px] px-10 lg:px-20">
             <div className="relative z-30 flex flex-col items-center text-center">
-              <div className="tag-text text-primary font-medium tracking-[0.1em] uppercase text-sm">
-                ACHIEVEMENTS
-              </div>
-              <h2 className="mt-4 text-4xl md:text-[56px] font-bold text-foreground leading-[1.1] md:leading-[1.2] tracking-[-0.02em] max-w-3xl">
+              <h2 className="text-4xl md:text-[56px] font-bold text-foreground leading-[1.1] md:leading-[1.2] tracking-[-0.02em] max-w-3xl">
                 Unlock new opportunities as you master interviews
               </h2>
-              <div className="mt-6 max-w-[33rem]">
-                <p className="text-base md:text-lg">
-                  Make every practice session count — earn badges, certificates and exclusive perks as you progress.
-                </p>
-              </div>
               <div className="mt-10 md:mt-16">
                 <Link
                   href="#"
