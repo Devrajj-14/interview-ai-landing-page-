@@ -268,8 +268,8 @@ const Features = () => {
           </div>
 
           {/* Desktop View */}
-          <div className="hidden lg:block mt-16 overflow-hidden">
-            <div className="relative h-[900px] max-w-full">
+          <div className="hidden md:block mt-16 overflow-hidden">
+            <div className="relative h-[600px] md:h-[900px] max-w-full">
               <div className="absolute inset-0 overflow-hidden">
                 {/* Row 1 */}
                 <div className="flex justify-between items-start mb-6 mx-[-40px]">
