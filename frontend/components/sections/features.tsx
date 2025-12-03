@@ -251,9 +251,9 @@ const Features = () => {
   return (
     <section 
       ref={sectionRef}
-      className="bg-background pt-[120px] pb-[100px] md:pt-[128px] md:pb-[128px] min-h-screen"
+      className="bg-background pt-[120px] pb-[100px] md:pt-[128px] md:pb-[128px] min-h-screen overflow-hidden w-full"
     >
-      <div className="max-w-[1440px] mx-auto px-10 md:px-20">
+      <div className="max-w-[1440px] mx-auto px-10 md:px-20 overflow-hidden">
         <div className="relative">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
@@ -268,11 +268,11 @@ const Features = () => {
           </div>
 
           {/* Desktop View */}
-          <div className="hidden lg:block mt-16">
-            <div className="relative h-[900px]">
-              <div className="absolute inset-0">
+          <div className="hidden lg:block mt-16 overflow-hidden">
+            <div className="relative h-[900px] max-w-full">
+              <div className="absolute inset-0 overflow-hidden">
                 {/* Row 1 */}
-                <div className="flex justify-between items-start mb-6 mx-[-80px]">
+                <div className="flex justify-between items-start mb-6 mx-[-40px]">
                   <div style={getTransform(-280)}>
                     <FeaturePill
                       iconSrc="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4005658da1580c0a05cb6_basketball-icon-3.webp"

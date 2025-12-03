@@ -9,9 +9,9 @@ import Footer from "@/components/sections/footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden w-full">
       <Navigation />
-      <main>
+      <main className="overflow-x-hidden w-full">
         <HeroSection />
         <Features />
         <RewardsSection />
