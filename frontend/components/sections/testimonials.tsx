@@ -10,33 +10,33 @@ const cn = (...classes: (string | undefined | null | false)[]) => classes.filter
 const testimonialsData = [
   {
     name: "Sarah Chen",
-    role: "Software Engineer at Google",
+    role: "Head of Talent at TechCorp",
     avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/svgs/68715137a12b90c7a67c1dfb_dummy_avatar-4.svg",
-    text: "Cops Interview completely transformed my interview preparation. The mock interviews with real engineers and instant feedback helped me land my dream job at Google. The platform is intuitive and the mentors are exceptional!",
+    text: "This platform completely transformed our hiring process. We reduced time-to-hire by 60% and the quality of candidates has significantly improved. The AI screening saves our team countless hours every week!",
   },
   {
     name: "Michael Rodriguez",
-    role: "Full Stack Developer at Meta",
+    role: "VP of Engineering at StartupX",
     avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/svgs/68715137097e5a9f4915ffeb_dummy_avatar-1-3.svg",
-    text: "The system design courses and practice sessions were game-changers. I went from struggling with design questions to confidently architecting solutions. Got offers from 3 FAANG companies!",
+    text: "The technical assessment tools are game-changers. We can now evaluate candidates' real coding skills before interviews. Hired 15 engineers in 3 months with a 95% retention rate!",
   },
   {
     name: "Priya Sharma",
-    role: "Data Scientist at Amazon",
+    role: "Talent Acquisition Lead at DataCo",
     avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/svgs/68715137a12b90c7a67c1dfb_dummy_avatar-4.svg",
-    text: "The AI-powered feedback and personalized learning path made all the difference. I practiced over 500 problems and the progress tracking kept me motivated throughout my journey.",
+    text: "The analytics and insights are invaluable. We can track every candidate's journey and make data-driven hiring decisions. Our hiring team collaboration has never been smoother.",
   },
   {
     name: "James Wilson",
-    role: "Senior Engineer at Microsoft",
+    role: "HR Director at Enterprise Inc",
     avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/svgs/68715137097e5a9f4915ffeb_dummy_avatar-1-3.svg",
-    text: "Best investment in my career! The behavioral interview prep and resume review services helped me present myself confidently. The mentors provided insights I couldn't find anywhere else.",
+    text: "Best investment in our recruitment stack! The automated scheduling and video interview features saved us hundreds of hours. The compliance tools ensure we maintain fair hiring practices.",
   },
   {
     name: "Emily Zhang",
-    role: "Product Manager at Apple",
+    role: "Chief People Officer at GrowthCo",
     avatar: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/svgs/68715137a12b90c7a67c1dfb_dummy_avatar-4.svg",
-    text: "Cops Interview's comprehensive approach covering technical and behavioral aspects is unmatched. The live sessions with industry experts gave me the edge I needed. Highly recommend to anyone serious about their career!",
+    text: "The comprehensive platform covering screening, interviews, and analytics is unmatched. Integration with our ATS was seamless. Highly recommend to any company serious about scaling their hiring!",
   },
 ];
 
@@ -116,7 +116,7 @@ const Testimonials = () => {
         <div className="text-center mb-12">
           <p className="tag-text mb-2">SUCCESS STORIES</p>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-            Stories from our candidate community
+            Trusted by leading HR teams
           </h2>
         </div>
 

@@ -30,7 +30,17 @@ const RewardsSection = () => {
   return (
     <>
       <style>{animations}</style>
-      <section className="bg-background relative overflow-hidden">
+      <section className="relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #f5f1ed 0%, #ebe5dd 50%, #f5f1ed 100%)' }}>
+        {/* Faded Background Effect */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute w-[600px] h-[600px] rounded-full top-[-10%] left-[-10%]" style={{ background: 'radial-gradient(circle, rgba(230,220,210,0.6) 0%, transparent 70%)' }}></div>
+          <div className="absolute w-[700px] h-[700px] rounded-full top-[-5%] right-[-15%]" style={{ background: 'radial-gradient(circle, rgba(240,235,225,0.5) 0%, transparent 70%)' }}></div>
+          <div className="absolute w-[500px] h-[500px] rounded-full top-[25%] left-[10%]" style={{ background: 'radial-gradient(circle, rgba(235,225,215,0.4) 0%, transparent 70%)' }}></div>
+          <div className="absolute w-[550px] h-[550px] rounded-full top-[35%] right-[5%]" style={{ background: 'radial-gradient(circle, rgba(245,240,230,0.5) 0%, transparent 70%)' }}></div>
+          <div className="absolute w-[450px] h-[450px] rounded-full bottom-[5%] left-[20%]" style={{ background: 'radial-gradient(circle, rgba(230,220,210,0.6) 0%, transparent 70%)' }}></div>
+          <div className="absolute w-[500px] h-[500px] rounded-full bottom-[0%] right-[15%]" style={{ background: 'radial-gradient(circle, rgba(240,230,220,0.4) 0%, transparent 70%)' }}></div>
+        </div>
+
         <div className="py-24 sm:py-32 lg:py-40">
           <div className="container mx-auto max-w-[1440px] px-10 lg:px-20">
             <div className="relative z-20 flex flex-col items-center text-center">

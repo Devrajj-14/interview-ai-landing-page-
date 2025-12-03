@@ -45,23 +45,31 @@ export default function Navigation() {
           isScrolled ? "shadow-sm" : ""
         }`}
       >
-        <div className="mx-auto flex h-[84.5px] max-w-[1280px] items-center justify-between">
+        <div className="mx-auto flex h-[70px] max-w-[1280px] items-center justify-between">
           <Link href="/" aria-label="Go to the Home page">
             <div className="text-3xl font-bold text-primary">Cops Interview</div>
           </Link>
 
-          <nav className="hidden items-center lg:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="group relative block px-6 pt-8 pb-2 text-[20px] text-foreground font-['DM_Sans',_sans-serif]"
-              >
-                {link.label}
-                <div className="absolute bottom-[12px] left-1/2 h-[3px] w-[calc(100%-48px)] -translate-x-1/2 scale-x-0 transform bg-primary transition-transform duration-300 group-hover:scale-x-100" />
-              </Link>
-            ))}
-          </nav>
+          <div className="hidden items-center lg:flex">
+            <nav className="flex items-center">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="group relative block px-5 py-2 text-[17px] text-foreground font-['DM_Sans',_sans-serif]"
+                >
+                  {link.label}
+                  <div className="absolute bottom-0 left-1/2 h-[3px] w-[calc(100%-48px)] -translate-x-1/2 scale-x-0 transform bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href="/hire"
+              className="ml-4 rounded-full bg-primary px-6 py-2.5 text-[16px] font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-lg"
+            >
+              Let's Talk
+            </Link>
+          </div>
 
           <button
             onClick={toggleMenu}
@@ -90,6 +98,13 @@ export default function Navigation() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/hire"
+            onClick={toggleMenu}
+            className="rounded-full bg-primary px-8 py-4 text-2xl font-semibold text-white transition-all hover:bg-primary/90"
+          >
+            Let's Talk
+          </Link>
         </nav>
       </div>
     </>

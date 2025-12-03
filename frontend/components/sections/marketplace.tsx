@@ -1,29 +1,25 @@
-import Image from 'next/image';
+"use client";
+
+import { FileText, Sparkle, Video } from '@phosphor-icons/react';
 
 const partnersData = [
   {
-    icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/icons/623bd920c58579fdab94492e_D60A09A8-0457-4C5E-9B3A-1-3.png",
-    name: "Expert Mentors",
-    description: "Network of 200+ industry experts with 15+ years of experience in tech interviews",
-    alt: "Expert Mentors icon",
-    width: 63,
-    height: 63,
+    icon: FileText,
+    name: "Upload Resume",
+    description: "Upload your resume and get instant AI-powered analysis and personalized recommendations",
+    color: "bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500",
   },
   {
-    icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/icons/6824383df2dc817c883d8617_caterers-icon-1.png",
+    icon: Sparkle,
     name: "AI Interview Coach",
     description: "Advanced AI providing real-time feedback and personalized improvement plans",
-    alt: "AI Coach icon",
-    width: 76,
-    height: 63,
+    color: "bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500",
   },
   {
-    icon: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/icons/6824383d719879377fe53f39_dresses-icon-2.png",
-    name: "Practice Platform",
-    description: "Comprehensive library with 5000+ questions and real interview scenarios",
-    alt: "Practice Platform icon",
-    width: 63,
-    height: 63,
+    icon: Video,
+    name: "AI Powered Interview",
+    description: "Experience realistic interview simulations powered by advanced AI technology",
+    color: "bg-gradient-to-br from-rose-500 via-pink-500 to-orange-500",
   }
 ];
 
@@ -41,28 +37,27 @@ const Marketplace = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {partnersData.map((partner, index) => (
-            <div
-              key={index}
-              className="bg-card rounded-[20px] p-8 text-center shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="flex justify-center items-center h-24 mb-6">
-                <Image
-                  src={partner.icon}
-                  alt={partner.alt}
-                  width={partner.width}
-                  height={partner.height}
-                  className="h-16 w-auto"
-                />
+          {partnersData.map((partner, index) => {
+            const IconComponent = partner.icon;
+            return (
+              <div
+                key={index}
+                className="bg-card rounded-[20px] p-8 text-center shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="flex justify-center items-center h-24 mb-6">
+                  <div className={`w-20 h-20 rounded-2xl ${partner.color} flex items-center justify-center shadow-lg`}>
+                    <IconComponent size={40} weight="fill" className="text-white" />
+                  </div>
+                </div>
+                <h3 className="text-2xl font-semibold text-card-foreground mb-3">
+                  {partner.name}
+                </h3>
+                <p className="text-base text-card-foreground/70 leading-relaxed">
+                  {partner.description}
+                </p>
               </div>
-              <h3 className="text-2xl font-semibold text-card-foreground mb-3">
-                {partner.name}
-              </h3>
-              <p className="text-base text-card-foreground/70 leading-relaxed">
-                {partner.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

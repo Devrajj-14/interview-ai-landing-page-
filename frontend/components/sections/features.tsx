@@ -2,7 +2,20 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { FileText, MessageSquare, BookOpen, Calendar, Users, Award, Briefcase, TrendingUp } from "lucide-react";
+import {
+  Brain,
+  MicrophoneStage,
+  MagnifyingGlass,
+  ShieldCheck,
+  Webcam,
+  Robot,
+  ChartLineUp,
+  Users,
+  ClipboardText,
+  Handshake,
+  UsersFour,
+  VideoCamera,
+} from "@phosphor-icons/react";
 
 interface FeaturePillProps {
   iconSrc: string;
@@ -61,51 +74,114 @@ const Features = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [internalScroll, setInternalScroll] = useState(0);
-  const maxInternalScroll = 300; // Number of scroll "ticks" needed to complete animation
+  const maxInternalScroll = 300;
 
   const apps: AppIcon[] = [
-    { icon: <FileText size={20} />, label: "Resume", color: "bg-gradient-to-br from-blue-500 to-blue-600" },
-    { icon: <MessageSquare size={20} />, label: "Interview", color: "bg-gradient-to-br from-purple-500 to-purple-600" },
-    { icon: <BookOpen size={20} />, label: "Guide", color: "bg-gradient-to-br from-green-500 to-green-600" },
-    { icon: <Calendar size={20} />, label: "Schedule", color: "bg-gradient-to-br from-orange-500 to-orange-600" },
-    { icon: <Users size={20} />, label: "Network", color: "bg-gradient-to-br from-pink-500 to-pink-600" },
-    { icon: <Award size={20} />, label: "Awards", color: "bg-gradient-to-br from-yellow-500 to-yellow-600" },
-    { icon: <Briefcase size={20} />, label: "Jobs", color: "bg-gradient-to-br from-indigo-500 to-indigo-600" },
-    { icon: <TrendingUp size={20} />, label: "Analytics", color: "bg-gradient-to-br from-teal-500 to-teal-600" },
+    { icon: <Brain size={28} weight="fill" />, label: "AI Brain", color: "bg-gradient-to-br from-purple-500 via-violet-500 to-indigo-500" },
+    { icon: <MicrophoneStage size={28} weight="fill" />, label: "Voice Analysis", color: "bg-gradient-to-br from-blue-500 via-sky-500 to-cyan-500" },
+    { icon: <MagnifyingGlass size={28} weight="fill" />, label: "Resume Scan", color: "bg-gradient-to-br from-pink-500 via-rose-500 to-red-500" },
+    { icon: <Webcam size={28} weight="fill" />, label: "Video Interview", color: "bg-gradient-to-br from-indigo-500 via-blue-500 to-slate-500" },
+    { icon: <ShieldCheck size={28} weight="fill" />, label: "Secure", color: "bg-gradient-to-br from-emerald-500 via-green-500 to-lime-500" },
+    { icon: <Robot size={28} weight="fill" />, label: "AI Coach", color: "bg-gradient-to-br from-amber-500 via-orange-500 to-yellow-500" },
+    { icon: <ChartLineUp size={28} weight="fill" />, label: "Analytics", color: "bg-gradient-to-br from-teal-500 via-cyan-500 to-blue-500" },
+    { icon: <UsersFour size={28} weight="fill" />, label: "Team Collab", color: "bg-gradient-to-br from-violet-500 via-purple-500 to-fuchsia-500" },
+    { icon: <ClipboardText size={28} weight="fill" />, label: "Templates", color: "bg-gradient-to-br from-orange-500 via-red-500 to-pink-500" },
+    { icon: <Handshake size={28} weight="fill" />, label: "Integration", color: "bg-gradient-to-br from-lime-500 via-green-500 to-emerald-500" },
+    { icon: <VideoCamera size={28} weight="fill" />, label: "Proctoring", color: "bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500" },
+    { icon: <Users size={28} weight="fill" />, label: "Candidates", color: "bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-500" },
   ];
 
   useEffect(() => {
+    let animationFrameId: number | null = null;
+    let pendingScroll = 0;
+    let isLocked = false;
+    let lastWheelTime = 0;
+    let wheelEventCount = 0;
+    let lastDirection = 0;
+    let directionChanges = 0;
+
+    const updateScroll = () => {
+      if (Math.abs(pendingScroll) > 0.1) {
+        setInternalScroll((prev) => {
+          const newScroll = prev + pendingScroll;
+          const clampedScroll = Math.max(0, Math.min(newScroll, maxInternalScroll));
+          return clampedScroll;
+        });
+        pendingScroll = 0;
+      }
+      animationFrameId = null;
+    };
+
     const handleWheel = (e: WheelEvent) => {
       if (!sectionRef.current) return;
 
+      const now = performance.now();
+      const timeSinceLastWheel = now - lastWheelTime;
+      lastWheelTime = now;
+
+      const currentDirection = Math.sign(e.deltaY);
+      if (currentDirection !== lastDirection && lastDirection !== 0) {
+        directionChanges++;
+      }
+      lastDirection = currentDirection;
+
+      if (timeSinceLastWheel < 50) {
+        wheelEventCount++;
+      } else {
+        wheelEventCount = 0;
+        directionChanges = 0;
+      }
+
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-
-      // Calculate if phone is centered in viewport
-      const phoneContainer = sectionRef.current.querySelector('.lg\\:block.mt-16');
-      if (!phoneContainer) return;
-      
-      const phoneRect = phoneContainer.getBoundingClientRect();
-      const phoneCenter = phoneRect.top + phoneRect.height / 2;
+      const sectionCenter = rect.top + rect.height / 2;
       const viewportCenter = windowHeight / 2;
-      const distanceFromCenter = Math.abs(phoneCenter - viewportCenter);
+      const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
       
-      // Activate stuck scroll when phone is centered (within 150px tolerance)
-      const isPhoneCentered = distanceFromCenter < 150 && phoneRect.top < viewportCenter && phoneRect.bottom > viewportCenter;
+      let activationZone = 200;
+      if (wheelEventCount > 5 || directionChanges > 2) {
+        activationZone = 350;
+      } else if (wheelEventCount > 3) {
+        activationZone = 280;
+      }
+      
+      const isPhoneCentered = distanceFromCenter < activationZone && 
+                              rect.top < viewportCenter && 
+                              rect.bottom > viewportCenter;
 
-      if (isPhoneCentered) {
-        const scrollingDown = e.deltaY > 0;
-        const scrollingUp = e.deltaY < 0;
+      const scrollingDown = e.deltaY > 0;
+      const canScrollDown = internalScroll < maxInternalScroll - 0.5;
+      const canScrollUp = internalScroll > 0.5;
 
-        // Scrolling down: capture scroll if animation not complete
-        if (scrollingDown && internalScroll < maxInternalScroll) {
-          e.preventDefault();
-          setInternalScroll((prev) => Math.min(prev + Math.abs(e.deltaY) / 3, maxInternalScroll));
+      const shouldCapture = isPhoneCentered && 
+                           ((scrollingDown && canScrollDown) || (!scrollingDown && canScrollUp));
+
+      if (shouldCapture) {
+        e.preventDefault();
+        e.stopPropagation();
+        isLocked = true;
+        
+        let sensitivity = 3.5;
+        if (directionChanges > 2) {
+          sensitivity = 2.0;
+        } else if (wheelEventCount > 5) {
+          sensitivity = 2.2;
+        } else if (wheelEventCount > 3) {
+          sensitivity = 2.8;
         }
-        // Scrolling up: capture scroll if animation has progress
-        else if (scrollingUp && internalScroll > 0) {
-          e.preventDefault();
-          setInternalScroll((prev) => Math.max(prev - Math.abs(e.deltaY) / 3, 0));
+        
+        pendingScroll += e.deltaY / sensitivity;
+
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+        }
+        animationFrameId = requestAnimationFrame(updateScroll);
+      } else {
+        if (isLocked) {
+          if ((scrollingDown && internalScroll >= maxInternalScroll - 0.5) ||
+              (!scrollingDown && internalScroll <= 0.5)) {
+            isLocked = false;
+          }
         }
       }
     };
@@ -114,18 +190,29 @@ const Features = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       
-      // Reset if scrolled completely away from section
-      if (rect.bottom < -200 || rect.top > window.innerHeight + 200) {
+      if (rect.bottom < -300) {
         setInternalScroll(0);
+        pendingScroll = 0;
+        isLocked = false;
+        wheelEventCount = 0;
+        directionChanges = 0;
+        lastDirection = 0;
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = null;
+        }
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("wheel", handleWheel, { capture: true });
       window.removeEventListener("scroll", handleScroll);
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [internalScroll, maxInternalScroll]);
 
@@ -134,7 +221,6 @@ const Features = () => {
     setScrollProgress(progress);
   }, [internalScroll, maxInternalScroll]);
 
-  // Phase 1: Pills move INTO the phone and disappear (0 - 0.6)
   const getTransform = (distance: number) => {
     const phase1End = 0.6;
     const phase1Progress = Math.min(scrollProgress / phase1End, 1);
@@ -149,7 +235,6 @@ const Features = () => {
     };
   };
 
-  // Phase 2: App icons appear inside phone (0.6 - 1.0)
   const getAppStyle = (index: number) => {
     const phase2Start = 0.6;
     const phase2Progress = Math.max(0, (scrollProgress - phase2Start) / (1 - phase2Start));
@@ -172,12 +257,12 @@ const Features = () => {
         <div className="relative">
           <div className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-              You focus on skills—we handle prep
+              You focus on hiring—we handle the rest
             </h2>
             <div className="max-w-xl mx-auto mt-4">
               <p className="text-lg md:text-xl text-foreground/90">
-                Practice, learn, track progress and master interviews in
-                one place
+                Streamline your recruitment process with AI-powered tools
+                in one platform
               </p>
             </div>
           </div>
@@ -359,7 +444,6 @@ const Features = () => {
               {/* Phone with App Icons Inside */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div className="relative">
-                  {/* Phone Frame */}
                   <Image
                     src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4084339958da4f71877b4_mobile-mockup-13.webp"
                     width={384}
@@ -368,19 +452,18 @@ const Features = () => {
                     className="max-w-[384px] h-auto"
                   />
                   
-                  {/* App Icons Grid Inside Phone Screen */}
-                  <div className="absolute top-[80px] left-[32px] right-[32px] bottom-[80px]">
-                    <div className="grid grid-cols-3 gap-6 gap-y-8 p-6">
+                  <div className="absolute top-[60px] left-[28px] right-[28px] bottom-[60px]">
+                    <div className="grid grid-cols-3 gap-4 gap-y-6 p-4">
                       {apps.map((app, index) => (
                         <div
                           key={index}
                           style={getAppStyle(index)}
-                          className="flex flex-col items-center gap-1.5"
+                          className="flex flex-col items-center gap-1"
                         >
-                          <div className={`w-12 h-12 rounded-xl ${app.color} flex items-center justify-center shadow-lg`}>
+                          <div className={`w-16 h-16 rounded-2xl ${app.color} flex items-center justify-center shadow-lg`}>
                             <div className="text-white">{app.icon}</div>
                           </div>
-                          <span className="text-[9px] text-gray-700 font-medium text-center leading-tight">
+                          <span className="text-[8px] text-gray-700 font-medium text-center leading-tight max-w-[70px]">
                             {app.label}
                           </span>
                         </div>

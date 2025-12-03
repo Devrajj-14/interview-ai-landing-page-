@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 
 const footerLinkColumns = [
   {
@@ -122,44 +122,115 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-background text-foreground">
-      <div className="mx-auto max-w-[1280px] px-10 py-12">
-        <div className="flex flex-col items-center gap-12 text-center lg:flex-row lg:items-start lg:justify-between lg:text-left">
-          <a href="/" className="flex-shrink-0">
-            <div className="text-3xl font-bold text-primary">Cops Interview</div>
-          </a>
+    <>
+      <style jsx>{`
+        @keyframes pulse-slow {
+          0%, 100% {
+            box-shadow: 0 0 30px rgba(147, 71, 255, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 50px rgba(147, 71, 255, 0.6);
+          }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 2s ease-in-out infinite;
+        }
+      `}</style>
+      {/* Statistics CTA Section */}
+      <section className="bg-background pt-6 pb-16 md:pt-8 md:pb-20">
+        <div className="mx-auto max-w-[1280px] px-10">
+          <div className="text-center space-y-10 mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold">
+              <span className="text-primary">See How Much Time You Can Save</span>{" "}
+              <span className="text-foreground">with Cops Interview!</span>
+            </h2>
+            <div className="flex justify-center">
+              <a
+                href="/hire"
+                className="relative inline-block rounded-full bg-primary px-10 py-4 text-lg font-semibold text-white transition-all hover:bg-primary/90 hover:shadow-2xl hover:scale-105 shadow-[0_0_30px_rgba(147,71,255,0.4)] animate-pulse-slow"
+              >
+                <span className="relative z-10">Talk to Our Expert</span>
+                <span className="absolute inset-0 rounded-full bg-primary blur-xl opacity-50"></span>
+              </a>
+            </div>
+          </div>
 
-          <div className="flex flex-col gap-8 sm:flex-row sm:gap-16 lg:gap-24">
-            {footerLinkColumns.map((column, colIndex) => (
-              <div key={colIndex} className="flex flex-col gap-3">
-                {column.links.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-base hover:underline"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+          <div className="bg-card rounded-3xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] p-10 md:p-16">
+            <h3 className="text-xl md:text-2xl font-semibold text-center mb-16 text-foreground">
+              Hire Smarter. Faster. With Zero Guesswork.
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">70%</div>
+                <p className="text-base text-foreground/70">
+                  <span className="font-semibold text-foreground">Reduction</span> in Time, Cost & Effort
+                </p>
               </div>
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">100%</div>
+                <p className="text-base text-foreground/70">
+                  <span className="font-semibold text-foreground">Increase</span> in Productivity
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">80%</div>
+                <p className="text-base text-foreground/70">
+                  <span className="font-semibold text-foreground">Better</span> Skill Matching
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-primary text-white">
+        <div className="mx-auto max-w-[1280px] px-10 py-12">
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+            <div className="text-center md:text-left">
+              <div className="text-3xl font-bold mb-2">Cops Interview</div>
+              <p className="text-white/80 text-sm">The Modern-Age Talent Transformation Platform</p>
+            </div>
+
+            <div className="flex flex-col gap-8 sm:flex-row sm:gap-16 lg:gap-24">
+              {footerLinkColumns.map((column, colIndex) => (
+                <div key={colIndex} className="flex flex-col gap-3 text-center md:text-left">
+                  {column.links.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-base text-white/90 hover:text-white hover:underline"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            <a
+              href="/hire"
+              className="rounded-full bg-white text-primary px-8 py-3 text-base font-semibold transition-all hover:bg-white/90 hover:shadow-lg"
+            >
+              Get in Touch
+            </a>
+          </div>
+
+          <div className="flex justify-center items-center gap-3 mt-8 pt-8 border-t border-white/20">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                aria-label={social.name}
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 transition-colors hover:bg-white/10"
+              >
+                <div className="text-white">{social.icon}</div>
+              </a>
             ))}
           </div>
         </div>
-
-        <div className="mt-12 flex items-center justify-center gap-2">
-          {socialLinks.map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              aria-label={social.name}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/30 transition-colors hover:bg-foreground/10"
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 

@@ -14,24 +14,24 @@ const HeroSection = () => {
             {/* home-hero_content */}
             <div className="lg:w-2/5 text-center lg:text-left mb-12 lg:mb-0">
               <h1 className="text-[56px] md:text-7xl font-bold leading-[1.1] tracking-[-0.02em]">
-                Ace your interviews
+                Hire top talent faster
               </h1>
               {/* padding-bottom padding-xsmall equivalent */}
               <div className="pt-4" />
               {/* max-width is-27rem */}
               <div className="max-w-[27rem] mx-auto lg:mx-0">
                 <p className="text-xl md:text-[22px] leading-relaxed">
-                  The platform professionals trust.
+                  The AI-powered platform HR teams trust to streamline hiring.
                 </p>
               </div>
               {/* padding-bottom padding-medium equivalent */}
               <div className="pt-8" />
               <div className="button-group">
                 <Link
-                  href="/candidates"
+                  href="/prepare"
                   className="inline-block bg-primary text-primary-foreground rounded-full px-8 py-4 text-sm font-semibold uppercase tracking-[0.05em] transition-all duration-300 ease-in-out hover:scale-105 shadow-[0_2px_8px_rgba(155,111,255,0.24)] hover:shadow-[0_8px_24px_rgba(155,111,255,0.24)]"
                 >
-                  START PREPARING
+                  GET STARTED
                 </Link>
               </div>
             </div>
