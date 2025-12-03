@@ -476,7 +476,7 @@ const Features = () => {
           </div>
 
           {/* Mobile View */}
-          <div className="lg:hidden mt-16">
+          <div className="md:hidden mt-16">
             <div className="max-w-[384px] mx-auto">
               <Image
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4084339958da4f71877b4_mobile-mockup-13.webp"
