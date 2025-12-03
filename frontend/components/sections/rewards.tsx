@@ -41,9 +41,9 @@ const RewardsSection = () => {
           <div className="absolute w-[500px] h-[500px] rounded-full bottom-[0%] right-[15%]" style={{ background: 'radial-gradient(circle, rgba(240,230,220,0.4) 0%, transparent 70%)' }}></div>
         </div>
 
-        <div className="py-24 sm:py-32 lg:py-40">
+        <div className="py-24 sm:py-32 lg:py-40 relative z-20">
           <div className="container mx-auto max-w-[1440px] px-10 lg:px-20">
-            <div className="relative z-20 flex flex-col items-center text-center">
+            <div className="relative z-30 flex flex-col items-center text-center bg-background/80 backdrop-blur-sm rounded-3xl py-8 px-4">
               <div className="tag-text text-primary font-medium tracking-[0.1em] uppercase text-sm">
                 ACHIEVEMENTS
               </div>
@@ -67,7 +67,7 @@ const RewardsSection = () => {
           </div>
         </div>
 
-        <div className="absolute inset-0 z-10 mx-auto max-w-[1440px] select-none pointer-events-none">
+        <div className="absolute inset-0 z-0 mx-auto max-w-[1440px] select-none pointer-events-none">
           <div className="relative h-full w-full">
             {/* Background Blocks */}
             <div className="absolute top-[28%] left-[8%] h-20 w-36 rounded-2xl bg-muted/60" />
@@ -78,27 +78,27 @@ const RewardsSection = () => {
             <div className="absolute bottom-[2%] right-[25%] h-16 w-32 rounded-2xl bg-muted/60" />
             <div className="absolute bottom-[10%] left-[5%] h-20 w-20 rounded-full bg-muted/60" />
 
-            {/* BG Images - Responsive sizing */}
+            {/* BG Images - Responsive sizing and positioning */}
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4dfe65cc20aed35145d06_image_202829-19.webp"
               alt="Ulta Beauty"
               width={106}
               height={123}
-              className="absolute left-[3%] top-[20%] w-12 md:w-20 animate-bob-slow"
+              className="absolute left-[2%] top-[15%] w-10 md:w-16 lg:w-20 animate-bob-slow opacity-70 md:opacity-100"
             />
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4dfe6187e70a30462641b_image_202824-20.webp"
               alt="Ribbon decor"
               width={129}
               height={141}
-              className="absolute right-[28%] top-[10%] w-16 md:w-24 animate-bob"
+              className="absolute right-[2%] top-[8%] w-12 md:w-20 lg:w-24 animate-bob opacity-70 md:opacity-100"
             />
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4dfe69d21a1fd3580a854_image_202825-21.webp"
               alt="Givingli"
               width={183}
               height={103}
-              className="absolute right-[5%] top-[30%] w-20 md:w-28 animate-bob-slow"
+              className="hidden md:block absolute right-[5%] top-[30%] w-20 lg:w-28 animate-bob-slow opacity-70 md:opacity-100"
             />
 
             {/* Coupons */}
@@ -107,21 +107,21 @@ const RewardsSection = () => {
               alt="Amazon reward"
               width={166}
               height={166}
-              className="absolute left-[12%] top-[36%] w-20 md:w-32 animate-bob"
+              className="absolute left-[5%] top-[40%] w-16 md:w-24 lg:w-32 animate-bob opacity-80 md:opacity-100"
             />
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/6867e4c58317e590e1b61347_talabat-26.webp"
               alt="Talabat reward"
               width={166}
               height={166}
-              className="absolute bottom-[2%] left-[20%] w-20 md:w-32 animate-bob-slow"
+              className="absolute bottom-[5%] left-[8%] w-16 md:w-24 lg:w-32 animate-bob-slow opacity-80 md:opacity-100"
             />
             <Image
               src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/6867e4c6af4405a766bcdbd4_noon-28.webp"
               alt="Noon reward"
               width={204}
               height={116}
-              className="absolute bottom-0 right-[4%] w-24 md:w-40 animate-bob"
+              className="absolute bottom-[2%] right-[2%] w-20 md:w-32 lg:w-40 animate-bob opacity-80 md:opacity-100"
             />
 
             {/* Coins */}
@@ -130,7 +130,7 @@ const RewardsSection = () => {
               alt="Gold coin"
               width={80}
               height={80}
-              className="absolute right-[19%] top-[45%] w-10 md:w-16 animate-spin-slow"
+              className="hidden md:block absolute right-[15%] top-[45%] w-12 lg:w-16 animate-spin-slow opacity-70"
               style={{ animationDuration: '10s' }}
             />
             <Image
@@ -138,7 +138,7 @@ const RewardsSection = () => {
               alt="Gold coin"
               width={80}
               height={80}
-              className="absolute left-[33%] top-[60%] w-8 md:w-12 animate-spin-slow"
+              className="hidden lg:block absolute left-[33%] top-[60%] w-10 lg:w-12 animate-spin-slow opacity-70"
             />
 
             {/* Main Surface & Path */}
