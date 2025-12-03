@@ -99,6 +99,9 @@ const Features = () => {
     let wheelEventCount = 0;
     let lastDirection = 0;
     let directionChanges = 0;
+    let touchStartY = 0;
+    let lastTouchY = 0;
+    let isTouching = false;
 
     const updateScroll = () => {
       if (Math.abs(pendingScroll) > 0.1) {
@@ -204,12 +207,76 @@ const Features = () => {
       }
     };
 
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!sectionRef.current) return;
+      touchStartY = e.touches[0].clientY;
+      lastTouchY = touchStartY;
+      isTouching = true;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!sectionRef.current || !isTouching) return;
+
+      const currentTouchY = e.touches[0].clientY;
+      const deltaY = lastTouchY - currentTouchY;
+      lastTouchY = currentTouchY;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionCenter = rect.top + rect.height / 2;
+      const viewportCenter = windowHeight / 2;
+      const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
+      
+      const activationZone = 250;
+      const isPhoneCentered = distanceFromCenter < activationZone && 
+                              rect.top < viewportCenter && 
+                              rect.bottom > viewportCenter;
+
+      const scrollingDown = deltaY > 0;
+      const canScrollDown = internalScroll < maxInternalScroll - 0.5;
+      const canScrollUp = internalScroll > 0.5;
+
+      const shouldCapture = isPhoneCentered && 
+                           ((scrollingDown && canScrollDown) || (!scrollingDown && canScrollUp));
+
+      if (shouldCapture) {
+        e.preventDefault();
+        e.stopPropagation();
+        isLocked = true;
+        
+        const sensitivity = 2.5;
+        pendingScroll += deltaY / sensitivity;
+
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId);
+        }
+        animationFrameId = requestAnimationFrame(updateScroll);
+      } else {
+        if (isLocked) {
+          if ((scrollingDown && internalScroll >= maxInternalScroll - 0.5) ||
+              (!scrollingDown && internalScroll <= 0.5)) {
+            isLocked = false;
+          }
+        }
+      }
+    };
+
+    const handleTouchEnd = () => {
+      isTouching = false;
+    };
+
     window.addEventListener("wheel", handleWheel, { passive: false, capture: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", handleWheel, { capture: true });
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
       if (animationFrameId !== null) {
         cancelAnimationFrame(animationFrameId);
       }
