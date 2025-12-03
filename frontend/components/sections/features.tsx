@@ -544,56 +544,33 @@ const Features = () => {
 
           {/* Mobile View */}
           <div className="md:hidden mt-16">
-            <div className="max-w-[384px] mx-auto">
-              <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4084339958da4f71877b4_mobile-mockup-13.webp"
-                width={384}
-                height={780}
-                alt="Mobile mockup showing Zenda app interface"
-                className="w-full h-auto"
-              />
-            </div>
-
-            <div className="relative mt-[-220px] pt-[220px] space-y-4">
-              <div className="absolute inset-0 overflow-hidden rounded-[40px]">
-                <div className="absolute w-[150px] h-[150px] bg-secondary rounded-3xl top-[10%] left-[-20px] rotate-[-15deg]"></div>
-                <div className="absolute w-[180px] h-[180px] bg-muted rounded-3xl top-[25%] right-[-40px] rotate-[20deg]"></div>
-                <div className="absolute w-[120px] h-[120px] bg-secondary rounded-3xl top-[50%] left-[-30px] rotate-[10deg]"></div>
-                <div className="absolute w-[100px] h-[100px] bg-muted rounded-3xl top-[70%] right-[20px] rotate-[-5deg]"></div>
-                <div className="absolute w-[80px] h-[80px] bg-accent/20 rounded-full bottom-[5%] left-[15%]"></div>
-              </div>
-
-              <div className="relative px-4">
-                <div className="bg-card shadow-lg rounded-3xl p-6 text-center text-xl font-medium text-foreground">
-                  Mock Interviews
-                </div>
-              </div>
-
-              <div className="relative px-4">
-                <div className="bg-card shadow-lg rounded-3xl p-6 flex items-center justify-between">
-                  <span className="text-xl font-medium text-foreground">
-                    Practice Tests
-                  </span>
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/685d45179dbf65da8996ec74_bag-14.webp"
-                    alt="Practice icon"
-                    width={60}
-                    height={60}
-                  />
-                </div>
-              </div>
-
-              <div className="relative px-4">
-                <div className="bg-card shadow-lg rounded-3xl p-6 flex items-center justify-between">
-                  <span className="text-xl font-medium text-foreground">
-                    Achievements
-                  </span>
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e431889b4aa073c0a33447_cup-icon-15.webp"
-                    alt="Achievement icon"
-                    width={50}
-                    height={50}
-                  />
+            <div className="relative h-[700px] max-w-full flex items-center justify-center">
+              <div className="relative">
+                <Image
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/59dec77e-ef45-46bc-b78e-2b97143c1112-zenda-com/assets/images/67e4084339958da4f71877b4_mobile-mockup-13.webp"
+                  width={384}
+                  height={780}
+                  alt="Mobile mockup showing app interface"
+                  className="max-w-[300px] h-auto"
+                />
+                
+                <div className="absolute top-[47px] left-[22px] right-[22px] bottom-[47px]">
+                  <div className="grid grid-cols-3 gap-3 gap-y-5 p-3">
+                    {apps.map((app, index) => (
+                      <div
+                        key={index}
+                        style={getAppStyle(index)}
+                        className="flex flex-col items-center gap-1"
+                      >
+                        <div className={`w-12 h-12 rounded-xl ${app.color} flex items-center justify-center shadow-lg`}>
+                          <div className="text-white">{app.icon}</div>
+                        </div>
+                        <span className="text-[7px] text-gray-700 font-medium text-center leading-tight max-w-[55px]">
+                          {app.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
